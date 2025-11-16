@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed = 5f; //The speed of movement
     [SerializeField]
     private SpriteRenderer playerSpriteRenderer; //Player's sprite
-    
+     [SerializeField]
+    private PlayerStats playerStats;
     [SerializeField]
     private Animator playerAnimator; //Player's animator
     private Vector3 lastPosition; //To track last position for movement detection
@@ -20,10 +21,30 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("Rigidbody2D not found on Player! Movement will not work correctly.");
         }
-
+         if (playerStats == null)
+        {
+            // Încearcă să o găsești pe același GameObject
+            playerStats = GetComponent<PlayerStats>();
+        }
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats script not found on PlayerMovement's GameObject! Movement will not stop on death.");
+        }
         lastPosition = transform.position;
     }
     void FixedUpdate(){
+         if (playerStats != null && !playerStats.IsAlive())
+        {
+            rb.linearVelocity = Vector2.zero; // Oprește instantaneu jucătorul
+            // Setează animația de idle/moarte dacă este necesar
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetBool("isMoving", false);
+                // Aici poți apela o altă animație specifică morții dacă ai una,
+                // ex: playerAnimator.SetTrigger("Die"); sau playerAnimator.Play("DeathAnimation");
+            }
+            return; // Ieși din FixedUpdate, nu procesa input-ul de mișcare
+        }
          // Get input for horizontal and vertical movement
          float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");   // W/S or Up/Down Arrow keys
@@ -40,7 +61,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-       
+       if (playerStats != null && !playerStats.IsAlive())
+        {
+            // Dacă jucătorul e mort, nu procesa animația de mișcare/orientare
+            return; 
+        }
         float horizontalInput = Input.GetAxisRaw("Horizontal");
        //Animation. We use the horizontal input to determine the facing direction.
         if (playerAnimator != null)
