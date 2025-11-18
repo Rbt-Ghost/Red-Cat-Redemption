@@ -255,4 +255,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abe51e4b490e0d45a5611744672ba4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeRenderer
-  playerSprite: {fileID: 0}
+  playerSprite: {fileID: 3041257940523491561, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
