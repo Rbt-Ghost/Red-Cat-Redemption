@@ -4,7 +4,7 @@ using UnityEngine.TextCore.Text;
 public class FadeRenderer : MonoBehaviour
 {
     const float fadeInAlpha = 1f;
-    const float fadeOutAlpha = 0.2f;
+    const float fadeOutAlpha = 0.5f;
 
     private bool isFading = false;
     private SpriteRenderer[] spriteRenderers; // Array to hold all SpriteRenderers in children
