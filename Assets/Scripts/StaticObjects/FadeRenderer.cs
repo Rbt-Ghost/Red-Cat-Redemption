@@ -9,9 +9,15 @@ public class FadeRenderer : MonoBehaviour
     private bool isFading = false;
     private SpriteRenderer[] spriteRenderers; // Array to hold all SpriteRenderers in children
 
+    public SpriteRenderer playerSprite;
+    private int layerOrder;
+
     void Start()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        // Example of accessing PlayerStats if needed
+        layerOrder = playerSprite.sortingOrder;
     }
 
     void Update()
@@ -34,6 +40,7 @@ public class FadeRenderer : MonoBehaviour
         {
             //Debug.Log("OnTriggerEnter2D ");
             isFading = true;
+            playerStats.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderers[0].sortingOrder - 1;
         }
     }
 
@@ -45,6 +52,7 @@ public class FadeRenderer : MonoBehaviour
         {
             //Debug.Log("OnTriggerExit2D ");
             isFading = false;
+            playerStats.GetComponent<SpriteRenderer>().sortingOrder = layerOrder;
         }
     }
 
