@@ -21,6 +21,7 @@ public class HealthBar : MonoBehaviour
         if (playerStats == null)
         {
             playerStats = FindObjectOfType<PlayerStats>();
+            Debug.Log("Not found");
         }
         
         if (fill == null)
