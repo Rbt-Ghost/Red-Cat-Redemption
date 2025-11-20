@@ -2,6 +2,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {   
+    private bool facingRight=true;
      [SerializeField]
     private float movementThreshold = 0.01f; //Used for detecting movement.
     [SerializeField]
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         }
          if (playerStats == null)
         {
-            // Încearcă să o găsești pe același GameObject
+           
             playerStats = GetComponent<PlayerStats>();
         }
         if (playerStats == null)
@@ -35,15 +36,14 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate(){
          if (playerStats != null && !playerStats.IsAlive())
         {
-            rb.linearVelocity = Vector2.zero; // Oprește instantaneu jucătorul
-            // Setează animația de idle/moarte dacă este necesar
+            rb.linearVelocity = Vector2.zero; 
+         
             if (playerAnimator != null)
             {
                 playerAnimator.SetBool("isMoving", false);
-                // Aici poți apela o altă animație specifică morții dacă ai una,
-                // ex: playerAnimator.SetTrigger("Die"); sau playerAnimator.Play("DeathAnimation");
+               
             }
-            return; // Ieși din FixedUpdate, nu procesa input-ul de mișcare
+            return;
         }
          // Get input for horizontal and vertical movement
          float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     {
        if (playerStats != null && !playerStats.IsAlive())
         {
-            // Dacă jucătorul e mort, nu procesa animația de mișcare/orientare
+          
             return; 
         }
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -73,16 +73,23 @@ public class PlayerMovement : MonoBehaviour
             if (horizontalInput > 0.01f) //To the right
             {
                 playerSpriteRenderer.flipX = false; 
+                facingRight = true;
             }
             else if (horizontalInput < -0.01f) //To the left
             {
                 playerSpriteRenderer.flipX = true; 
+                facingRight = false;
             }
            //If horizontal input is near zero, we don't change the flipX value (keep facing the same direction).
         }
         playerAnimator.SetBool("isMoving", IsMoving()); //Constantly update the isMoving parameter based on movement status.
         lastPosition = transform.position; //Update last position at the end of Update.
         
+    }
+
+    public bool IsFacingRight()
+    {
+        return facingRight;
     }
 
     public bool IsMoving()
