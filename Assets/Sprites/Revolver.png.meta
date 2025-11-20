@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: 85277c30397e55f4db168d31af6b2acb
+guid: 6b9175dcc2d3abc4981525766ea0234a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4011165979584494121
+    second: Revolver_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,9 +66,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 2
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
@@ -85,7 +88,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DialogueBox_0
+      name: Revolver_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 35
-        width: 435
-        height: 210
+        x: 0
+        y: 0
+        width: 95
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fed2e4203ce8ce847a351191a4c47567
-      internalID: -473251759
+      spriteID: 92af344d4368aa730800000000000000
+      internalID: 4011165979584494121
       vertices: []
       indices: 
       edges: []
@@ -122,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4511e33d40891d844821f0d9567ba27c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -130,11 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      DialogueBox_0: -473251759
+      Revolver_0: 4011165979584494121
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
