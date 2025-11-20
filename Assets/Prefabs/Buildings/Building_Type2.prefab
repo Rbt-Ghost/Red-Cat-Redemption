@@ -255,3 +255,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeRenderer
   playerSprite: {fileID: 3041257940523491561, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+  gunSprite: {fileID: 0}

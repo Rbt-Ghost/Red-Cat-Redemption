@@ -12,12 +12,15 @@ public class FadeRenderer : MonoBehaviour
     public SpriteRenderer playerSprite;
     private int layerOrder;
 
+    public SpriteRenderer gunSprite;
+    private int gunLayerOrder;
+
     void Start()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
-        // Example of accessing PlayerStats if needed
         layerOrder = playerSprite.sortingOrder;
+        gunLayerOrder = gunSprite.sortingOrder;
     }
 
     void Update()
@@ -40,7 +43,8 @@ public class FadeRenderer : MonoBehaviour
         {
             //Debug.Log("OnTriggerEnter2D ");
             isFading = true;
-            playerStats.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderers[0].sortingOrder - 1;
+            playerStats.GetComponent<SpriteRenderer>().sortingOrder = spriteRenderers[0].sortingOrder - 2;
+            gunSprite.sortingOrder = spriteRenderers[0].sortingOrder - 1;
         }
     }
 
@@ -53,6 +57,7 @@ public class FadeRenderer : MonoBehaviour
             //Debug.Log("OnTriggerExit2D ");
             isFading = false;
             playerStats.GetComponent<SpriteRenderer>().sortingOrder = layerOrder;
+            gunSprite.sortingOrder = gunLayerOrder;
         }
     }
 
