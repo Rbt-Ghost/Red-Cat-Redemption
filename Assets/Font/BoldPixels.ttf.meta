@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8bc9d6b57c6a9e4eb954284fbaac91e
+guid: 220480e13fcd4d34cbd383c8e9e9aa50
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pixel Game Extrude
+  - BoldPixels
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

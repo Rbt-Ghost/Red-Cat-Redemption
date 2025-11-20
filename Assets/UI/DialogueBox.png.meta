@@ -1,10 +1,7 @@
 fileFormatVersion: 2
 guid: 85277c30397e55f4db168d31af6b2acb
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -5261992394389525642
-    second: DialogueBox_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
@@ -88,7 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,20 +100,20 @@ TextureImporter:
       name: DialogueBox_0
       rect:
         serializedVersion: 2
-        x: 44
-        y: 34
-        width: 437
-        height: 212
+        x: 45
+        y: 35
+        width: 435
+        height: 210
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 67bea99ebc5a9f6b0800000000000000
-      internalID: -5261992394389525642
+      spriteID: fed2e4203ce8ce847a351191a4c47567
+      internalID: -473251759
       vertices: []
       indices: 
       edges: []
@@ -125,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4511e33d40891d844821f0d9567ba27c
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +130,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      DialogueBox_0: -5261992394389525642
+      DialogueBox_0: -473251759
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
