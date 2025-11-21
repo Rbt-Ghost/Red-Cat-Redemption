@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
+    private bool isDialogActive = false;
 
     [Header("UI")]
     public GameObject dialogBox;
@@ -30,6 +31,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string name, Sprite portrait, string[] dialogueLines)
     {
+        isDialogActive = true;
+
         npcName.text = name;
         npcPortrait.sprite = portrait;
         lines = dialogueLines;
@@ -75,7 +78,14 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        isDialogActive = false;
+
         dialogText.text = "";
         dialogBox.SetActive(false);
+    }
+
+    public bool IsDialogueActive()
+    {
+        return isDialogActive;
     }
 }

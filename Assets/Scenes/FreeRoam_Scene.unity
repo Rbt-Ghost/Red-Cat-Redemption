@@ -3096,6 +3096,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 1197519511}
     - target: {fileID: 7395090371116880000, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

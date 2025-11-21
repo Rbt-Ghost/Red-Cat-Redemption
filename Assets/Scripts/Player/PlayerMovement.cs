@@ -15,7 +15,10 @@ public class PlayerMovement : MonoBehaviour
     private Animator playerAnimator; //Player's animator
     private Vector3 lastPosition; //To track last position for movement detection
      private Rigidbody2D rb; // Reference to the Rigidbody2D component (used for movement)
-    
+
+    [SerializeField]
+    private DialogueManager dialogueManager;
+
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
@@ -34,6 +37,18 @@ public class PlayerMovement : MonoBehaviour
         lastPosition = transform.position;
     }
     void FixedUpdate(){
+        if (dialogueManager != null && dialogueManager.IsDialogueActive())
+        {
+            rb.linearVelocity = Vector2.zero;
+
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetBool("isMoving", false);
+            }
+
+            return;
+        }
+
          if (playerStats != null && !playerStats.IsAlive())
         {
             rb.linearVelocity = Vector2.zero; 
@@ -63,9 +78,15 @@ public class PlayerMovement : MonoBehaviour
     {
        if (playerStats != null && !playerStats.IsAlive())
         {
-          
             return; 
         }
+
+       if (dialogueManager != null && dialogueManager.IsDialogueActive())
+        {
+            playerAnimator.SetBool("isMoving", false);
+            return;
+        }
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
        //Animation. We use the horizontal input to determine the facing direction.
         if (playerAnimator != null)
