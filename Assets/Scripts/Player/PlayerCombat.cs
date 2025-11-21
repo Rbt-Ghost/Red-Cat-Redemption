@@ -15,7 +15,7 @@ public class PlayerCombat : MonoBehaviour
         // Check if Space key is pressed or held down
         if (Input.GetKey(KeyCode.Space))
         {
-            if (weapon != null)
+            if (weapon != null && weapon.isActiveAndEnabled)
             {
                 weapon.Shoot();
             }
