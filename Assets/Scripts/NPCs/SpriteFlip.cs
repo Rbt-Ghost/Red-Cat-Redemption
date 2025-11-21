@@ -10,6 +10,19 @@ public class SpriteFlip : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (player != null)
+        {
+            // Flip the sprite based on the player's position
+            if (player.position.x < transform.position.x)
+            {
+                spriteRenderer.flipX = true; // Face left
+            }
+            else
+            {
+                spriteRenderer.flipX = false; // Face right
+            }
+        }
     }
 
     // Update is called once per frame
