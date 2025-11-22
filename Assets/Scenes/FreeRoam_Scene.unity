@@ -2759,6 +2759,8 @@ GameObject:
   - component: {fileID: 1598700993}
   - component: {fileID: 1598700992}
   - component: {fileID: 1598700991}
+  - component: {fileID: 1598700994}
+  - component: {fileID: 1598700995}
   m_Layer: 5
   m_Name: HomeButton
   m_TagString: Untagged
@@ -2891,6 +2893,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598700989}
   m_CullTransparentMesh: 1
+--- !u!114 &1598700994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598700989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd7e771695a9dd4e9cc87284a09d99c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  transition: {fileID: 1979984257}
+  transitionTime: 1
+--- !u!114 &1598700995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598700989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cba5a355fd9e4a4ba0a6139a48f8000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  pauseMenu: {fileID: 0}
+  transition: {fileID: 1979984257}
+  transitionTime: 1
 --- !u!1 &1628508789 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2868299551097831098, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
@@ -3137,6 +3168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   pauseMenu: {fileID: 1788969326}
+  transition: {fileID: 0}
+  transitionTime: 1
 --- !u!1 &1825654059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3648,7 +3681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1528891534473408819, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2377028734995250699, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_Pivot.x
@@ -3698,6 +3731,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3792073778563641996, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712289647057566969, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6865594055943328741, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_LocalPosition.x
       value: 697.67944
@@ -3741,8 +3782,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1528891534473408819, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1979984258}
   m_SourcePrefab: {fileID: 100100000, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+--- !u!1 &1979984256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1528891534473408819, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+  m_PrefabInstance: {fileID: 1979984255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1979984257 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5251736344547945648, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+  m_PrefabInstance: {fileID: 1979984255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1979984258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979984256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd7e771695a9dd4e9cc87284a09d99c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  transition: {fileID: 1979984257}
+  transitionTime: 1
 --- !u!1 &2002521221
 GameObject:
   m_ObjectHideFlags: 0
