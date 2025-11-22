@@ -19,10 +19,6 @@ public class PlayerCombat : MonoBehaviour
             {
                 weapon.Shoot();
             }
-            else
-            {
-                Debug.LogWarning("Weapon is not assigned to PlayerCombat!");
-            }
         }
     }
 }
