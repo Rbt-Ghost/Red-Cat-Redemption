@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
        // Find PlayerStats if not assigned
         if (playerStats == null)
         {
-            playerStats = FindObjectOfType<PlayerStats>();
+            playerStats = FindFirstObjectByType<PlayerStats>();
             Debug.Log("Not found");
         }
         
