@@ -4234,6 +4234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomFolk
       objectReference: {fileID: 0}
+    - target: {fileID: 8937080415961262105, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
