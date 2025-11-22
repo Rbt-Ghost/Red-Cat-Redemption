@@ -505,7 +505,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4563,5 +4563,5 @@ SceneRoots:
   - {fileID: 1575302632}
   - {fileID: 2679074228278239302}
   - {fileID: 737606590}
-  - {fileID: 437008836}
   - {fileID: 1490050398}
+  - {fileID: 437008836}

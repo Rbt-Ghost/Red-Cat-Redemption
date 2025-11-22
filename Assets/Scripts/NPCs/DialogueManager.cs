@@ -29,6 +29,19 @@ public class DialogueManager : MonoBehaviour
         dialogBox.SetActive(false);
     }
 
+    void Update()
+    {
+        // Do nothing if the dialogue is not active
+        if (!isDialogActive)
+            return;
+
+        // Player presses F to continue
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            NextLine();
+        }
+    }
+
     public void StartDialogue(string name, Sprite portrait, string[] dialogueLines)
     {
         isDialogActive = true;
@@ -78,10 +91,22 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        isDialogActive = false;
+        //isDialogActive = false;
 
         dialogText.text = "";
         dialogBox.SetActive(false);
+
+        StartCoroutine(EndDialogueCooldown());
+    }
+
+    private IEnumerator EndDialogueCooldown()
+    {
+        // Wait for the end of the current frame
+        // This ensures the NPC script finishes its Update loop 
+        // thinking the dialog is STILL active, preventing the restart.
+        yield return new WaitForEndOfFrame();
+
+        isDialogActive = false;
     }
 
     public bool IsDialogueActive()

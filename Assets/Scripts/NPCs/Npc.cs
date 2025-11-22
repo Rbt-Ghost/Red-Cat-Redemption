@@ -16,7 +16,7 @@ public class Npc : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && playerIsClose)
+        if (Input.GetKeyDown(KeyCode.F) && playerIsClose && !DialogueManager.Instance.IsDialogueActive())
         {
             DialogueManager.Instance.StartDialogue(
                 npcName,
@@ -36,8 +36,8 @@ public class Npc : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerIsClose = false;
-            DialogueManager.Instance.EndDialogue();
+            if (other.CompareTag("Player"))
+                playerIsClose = false;
         }
     }
 }
