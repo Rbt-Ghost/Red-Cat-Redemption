@@ -12,7 +12,6 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
 
-    public Animator transition;
     public float transitionTime = 1f;
     public void Pause()
     {
@@ -29,8 +28,6 @@ public class PauseMenu : MonoBehaviour
 
         IEnumerator LoadLevel(int levelIndex)
     {
-        transition.SetTrigger("Start");
-
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelIndex);
