@@ -2941,7 +2941,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pauseMenu: {fileID: 0}
-  transition: {fileID: 1979984257}
   transitionTime: 1
 --- !u!1 &1628508789 stripped
 GameObject:
@@ -3230,7 +3229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   pauseMenu: {fileID: 1788969326}
-  transition: {fileID: 0}
   transitionTime: 1
 --- !u!1 &1825654059
 GameObject:
@@ -3799,7 +3797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712289647057566969, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6865594055943328741, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_LocalPosition.x
