@@ -4,10 +4,11 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField]
     private Weapon weapon;
-
+    [SerializeField]
+    private PlayerStats playerStats;
     void Update()
     {
-        GetInput();
+        if(playerStats.IsAlive()) GetInput();
     }
 
     private void GetInput()

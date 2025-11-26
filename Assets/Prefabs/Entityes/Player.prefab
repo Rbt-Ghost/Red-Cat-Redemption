@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   weapon: {fileID: 1771035924331296281}
+  playerStats: {fileID: 8494168966728324502}
 --- !u!1001 &8382401351266469764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -259,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1147355329760369505, guid: 987cd137c8d63a349982ba1cb39b4db7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4139515096795205557, guid: 987cd137c8d63a349982ba1cb39b4db7, type: 3}
       propertyPath: m_LocalScale.x
