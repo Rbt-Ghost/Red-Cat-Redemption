@@ -7,10 +7,10 @@ public class Bullet : MonoBehaviour
     private float range;
     private float direction; // 1 for right, -1 for left
     private Vector3 startPosition;
-    
+
     [SerializeField]
     private float bulletSpeed = 10f;
-    
+
     private Rigidbody2D rb;
 
     void Awake()
@@ -20,10 +20,10 @@ public class Bullet : MonoBehaviour
         {
             Debug.LogError("Rigidbody2D not found on Bullet!");
         }
-        
+
         // No gravity
         rb.gravityScale = 0f;
-        
+
         // Store the starting position to calculate distance traveled
         startPosition = transform.position;
     }
@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
         damage = bulletDamage;
         range = bulletRange;
         direction = bulletDirection;
-        
+
         // Set the bullet's velocity based on direction
         if (rb != null)
         {
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
     {
         // Check if bullet has traveled beyond its range
         float distanceTraveled = Mathf.Abs(transform.position.x - startPosition.x);
-        
+
         if (distanceTraveled >= range)
         {
             Destroy(gameObject);
@@ -59,7 +59,16 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       
+        // Apply damage to enemy
+        else if (collision.CompareTag("Enemy"))
+        {
+            EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+            if (enemyStats != null)
+            {
+                enemyStats.TakeDamage(damage);
+            }
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -67,6 +76,16 @@ public class Bullet : MonoBehaviour
         // Destroy bullet if it hits a wall with non-trigger collider
         if (collision.gameObject.CompareTag("Wall"))
         {
+            Destroy(gameObject);
+        }
+        // Apply damage to enemy
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
+            if (enemyStats != null)
+            {
+                enemyStats.TakeDamage(damage);
+            }
             Destroy(gameObject);
         }
     }
