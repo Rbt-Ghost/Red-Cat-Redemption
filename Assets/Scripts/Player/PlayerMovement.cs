@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private DialogueManager dialogueManager;
+    [SerializeField]
+    private AudioSource footstepAudioSource; // Audio source for footstep sounds
+    private float pitchRange;
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
@@ -86,6 +89,26 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isMoving", false);
             return;
         }
+
+        // Handle footstep sound
+        if (IsMoving() && playerStats.IsAlive() &&
+            (dialogueManager == null || !dialogueManager.IsDialogueActive()))
+        {
+            if (!footstepAudioSource.isPlaying)
+            {
+                pitchRange = Random.Range(0.8f, 1.2f);
+                footstepAudioSource.pitch = pitchRange;
+                footstepAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (footstepAudioSource.isPlaying)
+            {
+                footstepAudioSource.Stop();
+            }
+        }
+
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
        //Animation. We use the horizontal input to determine the facing direction.
