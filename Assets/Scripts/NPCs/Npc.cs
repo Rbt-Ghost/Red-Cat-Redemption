@@ -3,7 +3,7 @@ using UnityEngine;
 public class Npc : MonoBehaviour
 {
     public string npcName;
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
     public string[] dialogLines;
 
     private bool playerIsClose;
