@@ -3995,6 +3995,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 519118619}
     m_Modifications:
+    - target: {fileID: 70784411647413732, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 70784411647413732, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1300582118333624359, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4053,7 +4061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4725242933317556869, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5712289647057566969, guid: bdd5275d0aa5d284e8bbcc984bead454, type: 3}
       propertyPath: m_Alpha
