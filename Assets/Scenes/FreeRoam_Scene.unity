@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 4374e0a7ca5e91547a4d049f088c9d2e, type: 3}
     - target: {fileID: 8937080415961262105, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: m_SortingOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1672,7 +1672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592585952122817620, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: 'dialogLines.Array.data[0]'
-      value: Such an intresting stone do we have here
+      value: Such an intresting stone we have here
       objectReference: {fileID: 0}
     - target: {fileID: 5592585952122817620, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: 'dialogLines.Array.data[1]'
@@ -3209,7 +3209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8937080415961262105, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: m_SortingOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4900,7 +4900,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f1c65c1afe17f0b40a6c590be7e05192, type: 3}
     - target: {fileID: 8937080415961262105, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: m_SortingOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
