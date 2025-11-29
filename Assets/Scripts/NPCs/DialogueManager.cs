@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public Text npcName;
     public Image npcPortrait;
     public GameObject continueButton;
+    public AudioSource speechSound;
 
     [Header("Typing")]
     public float wordSpeed = 0.02f;
@@ -59,6 +60,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeLine()
     {
         isTyping = true;
+        speechSound.Play();
         continueButton.SetActive(false);
 
         foreach (char letter in lines[index].ToCharArray())
@@ -68,6 +70,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         isTyping = false;
+        speechSound.Stop();
         continueButton.SetActive(true);
     }
 
@@ -95,6 +98,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogText.text = "";
         dialogBox.SetActive(false);
+        speechSound.Stop();
 
         StartCoroutine(EndDialogueCooldown());
     }
