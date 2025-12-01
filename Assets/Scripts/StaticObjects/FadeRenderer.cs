@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.TextCore.Text;
 
 public class FadeRenderer : MonoBehaviour

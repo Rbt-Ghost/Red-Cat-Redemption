@@ -48,7 +48,8 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if(playerMovement != null && playerMovement.IsFacingRight())
+        weaponSpriteRenderer.color= playerMovement.GetComponent<SpriteRenderer>().color;
+        if (playerMovement != null && playerMovement.IsFacingRight())
         {
             weaponSpriteRenderer.flipX = false;
         }

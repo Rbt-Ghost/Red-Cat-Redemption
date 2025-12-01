@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -6,15 +6,25 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float aggroRange = 15f;
     [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private float stoppingDistance = 8f;
-
+    [SerializeField]
+    private float movementThreshold = 0.01f; //Used for detecting movement.
     [Header("References")]
     [SerializeField] private EnemyStats enemyStats;
     [SerializeField] private EnemyCombat enemyCombat;
 
+    [SerializeField] private Animator enemyAnimator;
     private Transform player;
     private Rigidbody2D rb;
     private bool isAggro = false;
+    [SerializeField]
+    private AudioSource footstepAudioSource; // Audio source for footstep sounds
+    private float pitchRange;
 
+    private Vector3 lastPosition; //To track last position for movement detection
+    void Awake()
+    {
+        lastPosition = transform.position;
+    }
     void Start()
     {
         // Find the player
@@ -41,6 +51,7 @@ public class EnemyMovement : MonoBehaviour
         {
             enemyCombat = GetComponent<EnemyCombat>();
         }
+        
     }
 
     void Update()
@@ -50,7 +61,23 @@ public class EnemyMovement : MonoBehaviour
             StopMovement();
             return;
         }
-
+        // Handle footstep sound
+        if (IsMoving() && enemyStats.IsAlive())
+        {
+            if (!footstepAudioSource.isPlaying)
+            {
+                pitchRange = Random.Range(0.8f, 1.2f);
+                footstepAudioSource.pitch = pitchRange;
+                footstepAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (footstepAudioSource.isPlaying)
+            {
+                footstepAudioSource.Stop();
+            }
+        }
         if (player == null) return;
 
         // Calculate distance to player
@@ -67,6 +94,8 @@ public class EnemyMovement : MonoBehaviour
             isAggro = false;
             StopMovement();
         }
+        enemyAnimator.SetBool("isMoving", IsMoving());
+        lastPosition = transform.position;
     }
 
     void MoveTowardsPlayer()
@@ -154,5 +183,15 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player == null) return Mathf.Infinity;
         return Vector3.Distance(transform.position, player.position);
+    }
+     public bool IsMoving()
+    {
+        //Calculate movement based on Rigidbody2D velocity for more accurate detection
+        if (rb != null)
+        {
+            return rb.linearVelocity.magnitude > movementThreshold;
+        }
+        // Fallback if there is no rigidbody
+        return Vector3.Distance(transform.position, lastPosition) > movementThreshold;
     }
 }
