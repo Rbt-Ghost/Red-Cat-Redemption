@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2831843636275409093, guid: 7cb7359d3c7e4f1469b68a1d79a73401, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 824473834}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -236,6 +240,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2831843636275409093, guid: 7cb7359d3c7e4f1469b68a1d79a73401, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 824473834}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -728,6 +736,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2831843636275409093, guid: 7cb7359d3c7e4f1469b68a1d79a73401, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 824473834}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1167,6 +1179,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!212 &824473834 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8989932409180792860, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+  m_PrefabInstance: {fileID: 1672426462}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &956586474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,6 +2657,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2831843636275409093, guid: 7cb7359d3c7e4f1469b68a1d79a73401, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 824473834}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
