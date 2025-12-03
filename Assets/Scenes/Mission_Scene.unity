@@ -1330,6 +1330,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7885140605907013391, guid: 212d2e147df767243994d0a548c87ce8, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 824473834}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1811,6 +1815,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CactusType_6
       objectReference: {fileID: 0}
+    - target: {fileID: 6279214969307018891, guid: 08540c43799c15041b77276b8261dd44, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 824473834}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3093,6 +3101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3932956702582584840, guid: 5b0ea245997bfd5468ccca99625aad56, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 824473834}
     - target: {fileID: 5160987938303511588, guid: 5b0ea245997bfd5468ccca99625aad56, type: 3}
       propertyPath: m_Name
       value: CactusType_1
