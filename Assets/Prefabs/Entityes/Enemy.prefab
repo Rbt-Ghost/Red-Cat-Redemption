@@ -344,10 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658c338780e086f479f82d3580048269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
-  range: 10
+  range: 25
   bulletDamage: 10
-  bulletRange: 15
-  bulletSpeed: 8
+  bulletRange: 25
+  bulletSpeed: 10
   yOffset: 0.5
   enemyBulletPrefab: {fileID: 9142473648607389404, guid: 1d3b5830ac6c39b409075abca5c56139, type: 3}
   shootingPoint: {fileID: 4673489070650621555}
@@ -364,10 +364,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455667a888c7a28478ad3e759edcfc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  aggroRange: 15
+  aggroRange: 50
   movementSpeed: 3
-  stoppingDistance: 8
+  stoppingDistance: 12
   movementThreshold: 0.01
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  gridCellSize: 1
+  updatePathInterval: 0.5
+  obstacleCheckRadius: 0.4
   enemyStats: {fileID: 3009308356909239447}
   enemyCombat: {fileID: 103502945553170971}
   enemyAnimator: {fileID: 8348958938202383264}
