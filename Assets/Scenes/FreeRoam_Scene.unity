@@ -2369,6 +2369,11 @@ RectTransform:
   m_AnchoredPosition: {x: 21.5, y: -43.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &942882587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6253709106348381348, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+  m_PrefabInstance: {fileID: 3243135474849818942}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &943054294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6560000936331027879, guid: 2001ad131696b844db09608c566a2991, type: 3}
@@ -3221,6 +3226,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6220175953550569279, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
   m_PrefabInstance: {fileID: 3243135474849818942}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1338496952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942882587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5781aea5f94626a43b02e8ec2d743c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionNPC
+  npcName: Random Folk
+  firstTimeLines:
+  - Hello there...
+  - You must be the new sheriff folks been talkin' about.
+  - If you want, I can fill you in with the bandits hideout
+  - I'll be waiting you here
+  missionLines:
+  - Ready for the task?
+  - Let's go on the mission!
+  missionSceneName: Mission_Scene
 --- !u!1001 &1342460371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6147,6 +6174,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1885610243}
     - target: {fileID: 5592585952122817620, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592585952122817620, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: 'dialogLines.Array.data[1]'
       value: You must be the new sheriff folks been talkin' about.
       objectReference: {fileID: 0}
@@ -6198,10 +6229,14 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5592585952122817620, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6253709106348381348, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1338496952}
   m_SourcePrefab: {fileID: 100100000, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
 --- !u!1001 &3262352159665202066
 PrefabInstance:
