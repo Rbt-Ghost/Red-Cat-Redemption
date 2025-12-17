@@ -6,51 +6,55 @@ public class MissionNpc : MonoBehaviour
     public string npcName;
     private SpriteRenderer spriteRenderer;
 
+    [Header("Persistence")]
+    [Tooltip("Give each NPC a unique ID so they don't share progress")]
+    public string npcID = "QuestGiver_01";
+
     [Header("Dialogue Content")]
-    public string[] firstTimeLines = { "Hello traveler!", "I haven't seen you around here before." };
+    public string[] firstTimeLines = { "Hello! I haven't seen you around here before." };
     public string[] missionLines = { "Ready for the task?", "Let's go on the mission!" };
 
-    [Header("Scene Transition")]
-    public string missionSceneName = "Mission_Scene";
+    [Header("Scene Settings")]
+    public string missionSceneName = "MissionScene";
 
     private bool hasMetPlayer = false;
     private bool playerIsClose;
-    private bool waitingForMissionEnd = false;
+    private bool isTalkingAboutMission = false;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Load the saved state. 0 = False, 1 = True.
+        hasMetPlayer = PlayerPrefs.GetInt(npcID + "_Met", 0) == 1;
     }
 
     void Update()
     {
-        // Check if player presses F and dialogue isn't already running
+        // 1. Interaction Logic
         if (Input.GetKeyDown(KeyCode.F) && playerIsClose && !DialogueManager.Instance.IsDialogueActive())
         {
             if (!hasMetPlayer)
             {
-                // First interaction
                 DialogueManager.Instance.StartDialogue(npcName, spriteRenderer.sprite, firstTimeLines);
+
+                // Save immediately so it's remembered even if the game crashes
                 hasMetPlayer = true;
+                PlayerPrefs.SetInt(npcID + "_Met", 1);
+                PlayerPrefs.Save();
             }
             else
             {
-                // Second interaction (Mission)
                 DialogueManager.Instance.StartDialogue(npcName, spriteRenderer.sprite, missionLines);
-                waitingForMissionEnd = true;
+                isTalkingAboutMission = true;
             }
         }
 
-        // Check if the mission dialogue just finished
-        if (waitingForMissionEnd && !DialogueManager.Instance.IsDialogueActive())
+        // 2. Scene Transition Logic
+        if (isTalkingAboutMission && !DialogueManager.Instance.IsDialogueActive())
         {
-            LoadMissionScene();
+            SceneManager.LoadScene(missionSceneName);
         }
-    }
-
-    void LoadMissionScene()
-    {
-        SceneManager.LoadScene(missionSceneName);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -61,5 +65,14 @@ public class MissionNpc : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player")) playerIsClose = false;
+    }
+
+    // Optional: Call this to 'forget' the player (useful for testing)
+    [ContextMenu("Reset NPC Memory")]
+    public void ResetMemory()
+    {
+        PlayerPrefs.DeleteKey(npcID + "_Met");
+        hasMetPlayer = false;
+        Debug.Log(npcName + " has forgotten the player.");
     }
 }
