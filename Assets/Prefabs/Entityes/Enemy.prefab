@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658c338780e086f479f82d3580048269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
-  range: 25
+  range: 20
   bulletDamage: 10
   bulletRange: 25
   bulletSpeed: 10
