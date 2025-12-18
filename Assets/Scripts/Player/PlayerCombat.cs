@@ -6,6 +6,11 @@ public class PlayerCombat : MonoBehaviour
     private Weapon weapon;
     [SerializeField]
     private PlayerStats playerStats;
+
+    [SerializeField]
+    private AudioSource shootAudioSource;
+    private float pitchRange;
+
     void Update()
     {
         if(playerStats.IsAlive()) GetInput();
@@ -16,8 +21,11 @@ public class PlayerCombat : MonoBehaviour
         // Check if Space key is pressed or held down
         if (Input.GetKey(KeyCode.Space))
         {
-            if (weapon != null && weapon.isActiveAndEnabled)
+            if (weapon != null && weapon.isActiveAndEnabled && weapon.getCanShoot())
             {
+                pitchRange = Random.Range(0.8f, 1.2f);
+                shootAudioSource.pitch = pitchRange;
+                shootAudioSource.Play();
                 weapon.Shoot();
             }
         }

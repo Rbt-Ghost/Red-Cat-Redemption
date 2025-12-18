@@ -131,4 +131,9 @@ public class Weapon : MonoBehaviour
         // Make sure that the weapon is exactly at original position
         transform.localPosition = originalWeaponPosition;
     }
+
+    public bool getCanShoot()
+    {
+        return canShoot;
+    }
 }
