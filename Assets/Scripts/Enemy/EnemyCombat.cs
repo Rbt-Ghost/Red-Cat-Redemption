@@ -21,6 +21,10 @@ public class EnemyCombat : MonoBehaviour
     private Coroutine shootingCoroutine;
     [SerializeField] private EnemyStats enemyStats;
 
+    [SerializeField]
+    private AudioSource shootAudioSource;
+    private float pitchRange;
+
     void Start()
     {
         // Find the player
@@ -86,6 +90,9 @@ public class EnemyCombat : MonoBehaviour
         while (isShooting && player != null && enemyStats.IsAlive())
         {
             // Shoot at player
+            pitchRange = Random.Range(0.8f, 1.2f);
+            shootAudioSource.pitch = pitchRange;
+            shootAudioSource.Play();
             ShootAtPlayer();
 
             // Wait for random time between 2 and 8 seconds
