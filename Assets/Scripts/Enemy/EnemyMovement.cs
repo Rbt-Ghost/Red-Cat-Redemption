@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float aggroRange = 15f;
     [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private float stoppingDistance = 8f;
     [SerializeField] private float movementThreshold = 0.01f;
@@ -14,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float gridCellSize = 1f;
     [SerializeField] private float updatePathInterval = 0.5f;
     [SerializeField] private float obstacleCheckRadius = 0.4f;
+    [SerializeField] private float pathfindingRange = 30f; // Range for pathfinding grid
 
     [Header("References")]
     [SerializeField] private EnemyStats enemyStats;
@@ -23,7 +23,6 @@ public class EnemyMovement : MonoBehaviour
 
     private Transform player;
     private Rigidbody2D rb;
-    private bool isAggro = false;
     private float pitchRange;
     private Vector3 lastPosition;
 
@@ -99,14 +98,13 @@ public class EnemyMovement : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= aggroRange)
+        // Move towards player if distance is greater than stopping distance
+        if (distanceToPlayer > stoppingDistance)
         {
-            isAggro = true;
             MoveTowardsPlayer();
         }
         else
         {
-            isAggro = false;
             StopMovement();
         }
 
@@ -116,8 +114,8 @@ public class EnemyMovement : MonoBehaviour
 
     void InitializePathfindingGrid()
     {
-        // Grid for aggro range
-        gridSize = Mathf.CeilToInt(aggroRange * 2 / gridCellSize) + 10; // +10 buffer
+        // Grid for pathfinding range
+        gridSize = Mathf.CeilToInt(pathfindingRange * 2 / gridCellSize) + 10; // +10 buffer
         lastGridCenter = transform.position;
 
         UpdatePathfindingGrid();
@@ -168,7 +166,7 @@ public class EnemyMovement : MonoBehaviour
         Point start = WorldToGridPoint(transform.position);
         Point target = WorldToGridPoint(player.position);
 
-        
+
         if (IsPointInGrid(start) && IsPointInGrid(target))
         {
             currentPath = Pathfinding.FindPath(pathfindingGrid, start, target);
@@ -293,10 +291,6 @@ public class EnemyMovement : MonoBehaviour
     // Gizmos for debugging
     void OnDrawGizmosSelected()
     {
-        // Aggro range (green)
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, aggroRange);
-
         // Stopping/combat range (red)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, stoppingDistance);
@@ -346,11 +340,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-   
-    public void SetAggroRange(float newAggroRange) { aggroRange = newAggroRange; }
+
     public void SetMovementSpeed(float newSpeed) { movementSpeed = newSpeed; }
     public void SetStoppingDistance(float newStoppingDistance) { stoppingDistance = newStoppingDistance; }
-    public bool IsAggro() { return isAggro; }
 
     public float GetDistanceToPlayer()
     {
