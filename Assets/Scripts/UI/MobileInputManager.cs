@@ -25,10 +25,15 @@ public class MobileInputManager : MonoBehaviour
     {
         // LOGIC TO HIDE ON PC:
         // If we are NOT in the Unity Editor, AND we are NOT on a mobile platform...
-        // ...then hide the mobile controls.
 #if !UNITY_EDITOR
         if (!Application.isMobilePlatform)
         {
+            // 1. Hide the visual elements
+            if (joystick != null) joystick.gameObject.SetActive(false);
+            if (shootButton != null) shootButton.gameObject.SetActive(false);
+            if (interactButton != null) interactButton.gameObject.SetActive(false);
+
+            // 2. Disable this manager object last (so it stops running updates)
             gameObject.SetActive(false);
         }
 #endif
@@ -36,7 +41,7 @@ public class MobileInputManager : MonoBehaviour
 
     public Vector2 GetMovement()
     {
-        // If the object is disabled (hidden), return zero movement
+        // Safety check: if manager or joystick is missing/disabled, return zero
         if (!gameObject.activeInHierarchy || joystick == null) return Vector2.zero;
         return joystick.InputVector;
     }
