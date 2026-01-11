@@ -1,20 +1,20 @@
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
-{   
-    private bool facingRight=true;
-     [SerializeField]
+{
+    private bool facingRight = true;
+    [SerializeField]
     private float movementThreshold = 0.01f; //Used for detecting movement.
     [SerializeField]
     private float moveSpeed = 5f; //The speed of movement
     [SerializeField]
     private SpriteRenderer playerSpriteRenderer; //Player's sprite
-     [SerializeField]
+    [SerializeField]
     private PlayerStats playerStats;
     [SerializeField]
     private Animator playerAnimator; //Player's animator
     private Vector3 lastPosition; //To track last position for movement detection
-     private Rigidbody2D rb; // Reference to the Rigidbody2D component (used for movement)
+    private Rigidbody2D rb; // Reference to the Rigidbody2D component (used for movement)
 
     [SerializeField]
     private DialogueManager dialogueManager;
@@ -22,15 +22,16 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource footstepAudioSource; // Audio source for footstep sounds
     private float pitchRange;
 
-    void Awake(){
+    void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D not found on Player! Movement will not work correctly.");
         }
-         if (playerStats == null)
+        if (playerStats == null)
         {
-           
+
             playerStats = GetComponent<PlayerStats>();
         }
         if (playerStats == null)
@@ -39,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
         }
         lastPosition = transform.position;
     }
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
         if (dialogueManager != null && dialogueManager.IsDialogueActive())
         {
             rb.linearVelocity = Vector2.zero;
@@ -52,19 +54,19 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-         if (playerStats != null && !playerStats.IsAlive())
+        if (playerStats != null && !playerStats.IsAlive())
         {
-            rb.linearVelocity = Vector2.zero; 
-         
+            rb.linearVelocity = Vector2.zero;
+
             if (playerAnimator != null)
             {
                 playerAnimator.SetBool("isMoving", false);
-               
+
             }
             return;
         }
-         // Get input for horizontal and vertical movement
-         float horizontalInput = Input.GetAxisRaw("Horizontal");
+        // Get input for horizontal and vertical movement
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");   // W/S or Up/Down Arrow keys
 
         // Create a direction vector based on input
@@ -79,12 +81,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-       if (playerStats != null && !playerStats.IsAlive())
+        if (playerStats != null && !playerStats.IsAlive())
         {
-            return; 
+            return;
         }
 
-       if (dialogueManager != null && dialogueManager.IsDialogueActive())
+        if (dialogueManager != null && dialogueManager.IsDialogueActive())
         {
             playerAnimator.SetBool("isMoving", false);
             return;
@@ -111,24 +113,24 @@ public class PlayerMovement : MonoBehaviour
 
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-       //Animation. We use the horizontal input to determine the facing direction.
+        //Animation. We use the horizontal input to determine the facing direction.
         if (playerAnimator != null)
         {
             if (horizontalInput > 0.01f) //To the right
             {
-                playerSpriteRenderer.flipX = false; 
+                playerSpriteRenderer.flipX = false;
                 facingRight = true;
             }
             else if (horizontalInput < -0.01f) //To the left
             {
-                playerSpriteRenderer.flipX = true; 
+                playerSpriteRenderer.flipX = true;
                 facingRight = false;
             }
-           //If horizontal input is near zero, we don't change the flipX value (keep facing the same direction).
+            //If horizontal input is near zero, we don't change the flipX value (keep facing the same direction).
         }
         playerAnimator.SetBool("isMoving", IsMoving()); //Constantly update the isMoving parameter based on movement status.
         lastPosition = transform.position; //Update last position at the end of Update.
-        
+
     }
 
     public bool IsFacingRight()

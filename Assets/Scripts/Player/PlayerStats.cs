@@ -4,8 +4,8 @@ using System.Collections;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float currentHealth = 100f;
+    [SerializeField] private float maxHealth = 90f; // Set to 90 as requested
+    [SerializeField] private float currentHealth = 90f;
 
     [Header("Visual Effects")]
     [SerializeField] private SpriteRenderer playerSprite;
@@ -19,14 +19,19 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        if (playerSprite == null) playerSprite = GetComponent<SpriteRenderer>();
-        if (playerSprite != null) originalColor = playerSprite.color;
+        if (playerSprite == null)
+            playerSprite = GetComponent<SpriteRenderer>();
+
+        if (playerSprite != null)
+            originalColor = playerSprite.color;
     }
 
     void Update()
     {
-        // Keep your input logic if needed
-        // GetInput(); 
+        // Healing Debug (Optional, moved to H)
+        if (Input.GetKeyDown(KeyCode.H)) Heal(10f);
+
+        // REMOVED 'P' KEY INPUT HERE TO PREVENT CONFLICT
     }
 
     public void TakeDamage(float damageAmount)
@@ -35,7 +40,8 @@ public class PlayerStats : MonoBehaviour
 
         currentHealth -= damageAmount;
 
-        if (damageEffectCoroutine != null) StopCoroutine(damageEffectCoroutine);
+        if (damageEffectCoroutine != null)
+            StopCoroutine(damageEffectCoroutine);
         damageEffectCoroutine = StartCoroutine(DamageEffect());
 
         if (currentHealth <= 0)
@@ -48,27 +54,14 @@ public class PlayerStats : MonoBehaviour
     void Die()
     {
         alive = false;
-        Debug.Log("Player has died.");
 
-        if (playerSprite != null) playerSprite.color = deathColor;
+        if (playerSprite != null)
+            playerSprite.color = deathColor;
 
-        // --- Call Game Over ---
         if (GameManager.Instance != null)
         {
             GameManager.Instance.TriggerGameOver();
         }
-        else
-        {
-            Debug.LogError("GameManager not found in scene!");
-        }
-    }
-
-    public void Respawn()
-    {
-        alive = true;
-        currentHealth = maxHealth;
-        transform.position = Vector3.zero;
-        if (playerSprite != null) playerSprite.color = originalColor;
     }
 
     public void Heal(float healAmount)

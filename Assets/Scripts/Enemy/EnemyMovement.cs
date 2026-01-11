@@ -19,7 +19,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private EnemyStats enemyStats;
     [SerializeField] private EnemyCombat enemyCombat;
     [SerializeField] private Animator enemyAnimator;
-    [SerializeField] private AudioSource footstepAudioSource;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -74,24 +73,6 @@ public class EnemyMovement : MonoBehaviour
         {
             StopMovement();
             return;
-        }
-
-        // Handle footstep sound
-        if (IsMoving() && enemyStats.IsAlive())
-        {
-            if (!footstepAudioSource.isPlaying)
-            {
-                pitchRange = Random.Range(0.8f, 1.2f);
-                footstepAudioSource.pitch = pitchRange;
-                footstepAudioSource.Play();
-            }
-        }
-        else
-        {
-            if (footstepAudioSource.isPlaying)
-            {
-                footstepAudioSource.Stop();
-            }
         }
 
         if (player == null) return;

@@ -28,10 +28,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerStats = FindObjectOfType<PlayerStats>();
+        playerStats = Object.FindFirstObjectByType<PlayerStats>();
 
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (victoryPanel != null) victoryPanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        // --- INSTANT WIN CHEAT ---
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Instant Win Triggered!");
+            TriggerVictory();
+        }
     }
 
     public void TriggerGameOver()
@@ -58,15 +68,11 @@ public class GameManager : MonoBehaviour
     {
         if (victoryStatsText == null || playerStats == null) return;
 
-        // 1. Calculate raw HP lost (e.g., 90 - 70 = 20 damage)
+        // Calculate lives lost (Damage / 10)
         float hpLost = playerStats.GetMaxHealth() - playerStats.GetCurrentHealth();
-
-        // 2. Convert HP to "Lives" (20 / 10 = 2 lives)
-        // We use Mathf.Ceil or Round to ensure we don't get decimals like 2.5 lives
         float livesLost = hpLost / 10f;
 
-        // 3. Update the text
-        // Result: "It took you only 2/9 lives"
+        // Update the text
         victoryStatsText.text = "It took you only " + livesLost + "/9 lives";
     }
 
