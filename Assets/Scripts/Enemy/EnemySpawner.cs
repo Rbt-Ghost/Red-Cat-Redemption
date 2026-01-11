@@ -94,10 +94,25 @@ public class EnemySpawner : MonoBehaviour
 
     void TrySpawnEnemy()
     {
-        // Try 10 times to find a valid position
-        for (int i = 0; i < 10; i++)
+        Camera mainCam = Camera.main;
+
+        // Try 20 times to find a valid position (increased attempts to account for camera obstruction)
+        for (int i = 0; i < 20; i++)
         {
             Vector2 pos = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+
+            // Check Camera Visibility
+            if (mainCam != null)
+            {
+                Vector3 viewportPoint = mainCam.WorldToViewportPoint(pos);
+                // Viewport coordinates are 0 to 1 when on screen.
+                // We check if the point is strictly inside the view.
+                bool isOnScreen = (viewportPoint.x > 0 && viewportPoint.x < 1 &&
+                                   viewportPoint.y > 0 && viewportPoint.y < 1);
+
+                // If it is on screen, skip this position and try again
+                if (isOnScreen) continue;
+            }
 
             // Check if position touches a wall
             if (Physics2D.OverlapCircle(pos, spawnRadius, wallLayer) == null)
@@ -107,7 +122,7 @@ public class EnemySpawner : MonoBehaviour
                 return;
             }
         }
-        Debug.LogWarning("Could not find spawn position for enemy");
+        Debug.LogWarning("Could not find spawn position for enemy (obscured by camera or walls)");
     }
 
     void WinGame()
