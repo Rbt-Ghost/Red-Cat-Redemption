@@ -1,4 +1,5 @@
 using UnityEngine;
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private AudioSource footstepAudioSource; // Audio source for footstep sounds
     private float pitchRange;
+
+    [Header("Movement Bounds")]
+    [Tooltip("Matches the EnemySpawner configuration")]
+    [SerializeField] private float minX = -60f;
+    [SerializeField] private float maxX = 30f;
+    [SerializeField] private float minY = -33f;
+    [SerializeField] private float maxY = 30f;
 
     void Awake()
     {
@@ -78,6 +86,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate the movement amount for this frame
         rb.linearVelocity = movementDirection * moveSpeed;
+
+        // --- Constrain Player within Bounds ---
+        Vector2 clampedPosition = rb.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minY, maxY);
+        rb.position = clampedPosition;
     }
     void Update()
     {
