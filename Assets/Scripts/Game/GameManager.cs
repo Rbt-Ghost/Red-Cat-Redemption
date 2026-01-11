@@ -36,12 +36,14 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        /*
         // --- INSTANT WIN CHEAT ---
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("Instant Win Triggered!");
             TriggerVictory();
         }
+        */
     }
 
     public void TriggerGameOver()

@@ -29,7 +29,7 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         // Healing Debug (Optional, moved to H)
-        if (Input.GetKeyDown(KeyCode.H)) Heal(10f);
+        //if (Input.GetKeyDown(KeyCode.H)) Heal(10f);
 
         // REMOVED 'P' KEY INPUT HERE TO PREVENT CONFLICT
     }
