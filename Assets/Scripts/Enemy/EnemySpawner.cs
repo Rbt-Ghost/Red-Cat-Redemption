@@ -6,9 +6,13 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private int maxEnemies = 20;
-    [SerializeField] private float minSpawnInterval = 5f;
-    [SerializeField] private float maxSpawnInterval = 15f;
+    [SerializeField] private float spawnInterval = 2f; // Time between individual enemy spawns inside a wave
+
+    [Header("Wave Settings")]
+    private int[] waveCounts = new int[] { 5, 10, 15 }; // The 3 waves
+    private int currentWaveIndex = 0;
+    private int enemiesSpawnedInWave = 0;
+    private bool allWavesComplete = false;
 
     [Header("Spawn Area")]
     [SerializeField] private float minX = -60f;
@@ -26,173 +30,122 @@ public class EnemySpawner : MonoBehaviour
 
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private float nextSpawnTime;
-    private bool isSpawning = true;
+    private bool isSpawningWave = true;
 
     void Start()
     {
         if (enemyPrefab == null)
         {
-            Debug.LogError("Enemy Prefab is not assigned to EnemySpawner!");
+            Debug.LogError("Enemy Prefab is not assigned!");
             enabled = false;
             return;
         }
 
-        // Create container for enemies if not assigned
         if (enemiesContainer == null)
         {
             GameObject container = new GameObject("Enemies");
             enemiesContainer = container.transform;
         }
 
-        // Set first spawn time
-        nextSpawnTime = Time.time + Random.Range(minSpawnInterval, maxSpawnInterval);
+        Debug.Log($"Starting Wave {currentWaveIndex + 1} ({waveCounts[currentWaveIndex]} enemies)");
     }
 
     void Update()
     {
-        if (!isSpawning) return;
+        if (allWavesComplete) return;
 
-        // Clean up null references (destroyed enemies)
+        // Remove dead enemies from list
         CleanupDestroyedEnemies();
 
-        // Check if it's time to spawn and if we haven't reached max enemies
-        if (Time.time >= nextSpawnTime && spawnedEnemies.Count < maxEnemies)
+        // Check if current wave is finished spawning AND all enemies are dead
+        if (!isSpawningWave && spawnedEnemies.Count == 0)
         {
-            TrySpawnEnemy();
-            // Schedule next spawn
-            nextSpawnTime = Time.time + Random.Range(minSpawnInterval, maxSpawnInterval);
+            StartNextWave();
+            return;
+        }
+
+        // Logic to spawn enemies for the current wave
+        if (isSpawningWave)
+        {
+            if (Time.time >= nextSpawnTime)
+            {
+                TrySpawnEnemy();
+                nextSpawnTime = Time.time + spawnInterval;
+            }
+
+            // Stop spawning if we reached the count for this wave
+            if (enemiesSpawnedInWave >= waveCounts[currentWaveIndex])
+            {
+                isSpawningWave = false;
+                Debug.Log($"Wave {currentWaveIndex + 1} spawning finished. Defeat all enemies to proceed!");
+            }
+        }
+    }
+
+    void StartNextWave()
+    {
+        currentWaveIndex++;
+
+        if (currentWaveIndex < waveCounts.Length)
+        {
+            // Reset for next wave
+            enemiesSpawnedInWave = 0;
+            isSpawningWave = true;
+            Debug.Log($"Wave {currentWaveIndex} cleared! Starting Wave {currentWaveIndex + 1} ({waveCounts[currentWaveIndex]} enemies)");
+        }
+        else
+        {
+            // All waves finished
+            allWavesComplete = true;
+            Victory();
+        }
+    }
+
+    void Victory()
+    {
+        Debug.Log("All waves defeated!");
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.TriggerVictory();
         }
     }
 
     void TrySpawnEnemy()
     {
-        Vector2 spawnPosition;
-        bool validPositionFound = false;
-
-        // Try to find a valid spawn position
-        for (int attempt = 0; attempt < maxSpawnAttempts; attempt++)
+        for (int i = 0; i < maxSpawnAttempts; i++)
         {
-            spawnPosition = GetRandomSpawnPosition();
+            Vector2 pos = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
-            if (IsValidSpawnPosition(spawnPosition))
+            // Check for walls
+            if (Physics2D.OverlapCircle(pos, spawnCheckRadius, wallLayer) == null)
             {
-                SpawnEnemy(spawnPosition);
-                validPositionFound = true;
-                break;
+                SpawnEnemy(pos);
+                return;
             }
         }
-
-        if (!validPositionFound)
-        {
-            Debug.LogWarning("Could not find valid spawn position after " + maxSpawnAttempts + " attempts");
-        }
-    }
-
-    Vector2 GetRandomSpawnPosition()
-    {
-        float randomX = Random.Range(minX, maxX);
-        float randomY = Random.Range(minY, maxY);
-        return new Vector2(randomX, randomY);
-    }
-
-    bool IsValidSpawnPosition(Vector2 position)
-    {
-        // Check if there's a wall at this position
-        Collider2D hit = Physics2D.OverlapCircle(position, spawnCheckRadius, wallLayer);
-
-        if (hit != null)
-        {
-            // Position is blocked by a wall
-            return false;
-        }
-
-        return true;
     }
 
     void SpawnEnemy(Vector2 position)
     {
         GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity, enemiesContainer);
         spawnedEnemies.Add(enemy);
-
-        Debug.Log($"Enemy spawned at {position}. Total enemies: {spawnedEnemies.Count}/{maxEnemies}");
+        enemiesSpawnedInWave++;
     }
 
     void CleanupDestroyedEnemies()
     {
-        // Remove null references from the list (destroyed enemies)
-        spawnedEnemies.RemoveAll(enemy => enemy == null);
+        spawnedEnemies.RemoveAll(x => x == null);
     }
 
-    // Public methods for external control
-    public void StartSpawning()
-    {
-        isSpawning = true;
-        nextSpawnTime = Time.time + Random.Range(minSpawnInterval, maxSpawnInterval);
-    }
-
-    public void StopSpawning()
-    {
-        isSpawning = false;
-    }
-
-    public void ClearAllEnemies()
-    {
-        foreach (GameObject enemy in spawnedEnemies)
-        {
-            if (enemy != null)
-            {
-                Destroy(enemy);
-            }
-        }
-        spawnedEnemies.Clear();
-    }
-
-    public int GetCurrentEnemyCount()
-    {
-        CleanupDestroyedEnemies();
-        return spawnedEnemies.Count;
-    }
-
-    public int GetMaxEnemies()
-    {
-        return maxEnemies;
-    }
-
-    // Gizmos for visualizing spawn area
+    // Gizmos to see spawn area
     void OnDrawGizmos()
     {
-        // Draw spawn area bounds
         Gizmos.color = Color.yellow;
-
-        Vector3 bottomLeft = new Vector3(minX, minY, 0);
-        Vector3 bottomRight = new Vector3(maxX, minY, 0);
-        Vector3 topRight = new Vector3(maxX, maxY, 0);
-        Vector3 topLeft = new Vector3(minX, maxY, 0);
-
-        Gizmos.DrawLine(bottomLeft, bottomRight);
-        Gizmos.DrawLine(bottomRight, topRight);
-        Gizmos.DrawLine(topRight, topLeft);
-        Gizmos.DrawLine(topLeft, bottomLeft);
-
-        // Draw center of spawn area
-        Vector3 center = new Vector3((minX + maxX) / 2, (minY + maxY) / 2, 0);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(center, 1f);
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // Draw all current enemy positions
-        if (Application.isPlaying && spawnedEnemies != null)
-        {
-            Gizmos.color = Color.red;
-            foreach (GameObject enemy in spawnedEnemies)
-            {
-                if (enemy != null)
-                {
-                    Gizmos.DrawWireSphere(enemy.transform.position, 0.5f);
-                }
-            }
-        }
+        Vector3 bl = new Vector3(minX, minY, 0);
+        Vector3 br = new Vector3(maxX, minY, 0);
+        Vector3 tr = new Vector3(maxX, maxY, 0);
+        Vector3 tl = new Vector3(minX, maxY, 0);
+        Gizmos.DrawLine(bl, br); Gizmos.DrawLine(br, tr);
+        Gizmos.DrawLine(tr, tl); Gizmos.DrawLine(tl, bl);
     }
 }
