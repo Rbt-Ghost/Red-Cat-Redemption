@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class Pathfinding
 {
     // The API you should use to get path
@@ -26,6 +27,13 @@ public class Pathfinding
     // internal function to find path, don't use this one from outside
     private static List<Node> _ImpFindPath(Grid grid, Point startPos, Point targetPos)
     {
+        // Safety check to ensure start/end are within bounds
+        if (startPos.x < 0 || startPos.x >= grid.nodes.GetLength(0) || startPos.y < 0 || startPos.y >= grid.nodes.GetLength(1) ||
+            targetPos.x < 0 || targetPos.x >= grid.nodes.GetLength(0) || targetPos.y < 0 || targetPos.y >= grid.nodes.GetLength(1))
+        {
+            return null;
+        }
+
         Node startNode = grid.nodes[startPos.x, startPos.y];
         Node targetNode = grid.nodes[targetPos.x, targetPos.y];
 
@@ -58,6 +66,27 @@ public class Pathfinding
                 {
                     continue;
                 }
+
+                // --- NEW CODE: Prevent Corner Cutting ---
+                // If moving diagonally, check if the adjacent straight tiles are blocked.
+                int dx = neighbour.gridX - currentNode.gridX;
+                int dy = neighbour.gridY - currentNode.gridY;
+
+                // Check if the move is diagonal (both x and y change)
+                if (Mathf.Abs(dx) == 1 && Mathf.Abs(dy) == 1)
+                {
+                    // Check the two cardinal nodes sharing this diagonal
+                    // Example: Moving Top-Right (1,1) checks Right (1,0) and Top (0,1)
+                    bool walkX = grid.nodes[currentNode.gridX + dx, currentNode.gridY].walkable;
+                    bool walkY = grid.nodes[currentNode.gridX, currentNode.gridY + dy].walkable;
+
+                    // If either adjacent tile is a wall, block this diagonal move
+                    if (!walkX || !walkY)
+                    {
+                        continue;
+                    }
+                }
+                // ----------------------------------------
 
                 int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour) * (int)(10.0f * neighbour.penalty);
                 if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
