@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61a3fdef0dacb547bcdd1331f193bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 90
+  currentHealth: 90
   playerSprite: {fileID: 3041257940523491561}
   damageColor: {r: 0.7735849, g: 0, b: 0, a: 1}
   deathColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
