@@ -32,7 +32,15 @@ public class MissionNpc : MonoBehaviour
     void Update()
     {
         // 1. Interaction Logic
-        if (Input.GetKeyDown(KeyCode.F) && playerIsClose && !DialogueManager.Instance.IsDialogueActive())
+        // Check Keyboard 'F' OR Mobile Interact Button
+        bool interactTriggered = Input.GetKeyDown(KeyCode.F);
+
+        if (MobileInputManager.Instance != null && MobileInputManager.Instance.IsInteracting())
+        {
+            interactTriggered = true;
+        }
+
+        if (interactTriggered && playerIsClose && !DialogueManager.Instance.IsDialogueActive())
         {
             if (!hasMetPlayer)
             {

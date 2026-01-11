@@ -16,7 +16,15 @@ public class Npc : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && playerIsClose && !DialogueManager.Instance.IsDialogueActive())
+        // Check Keyboard 'F' OR Mobile Interact Button
+        bool interactTriggered = Input.GetKeyDown(KeyCode.F);
+
+        if (MobileInputManager.Instance != null && MobileInputManager.Instance.IsInteracting())
+        {
+            interactTriggered = true;
+        }
+
+        if (interactTriggered && playerIsClose && !DialogueManager.Instance.IsDialogueActive())
         {
             DialogueManager.Instance.StartDialogue(
                 npcName,
@@ -36,8 +44,8 @@ public class Npc : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-                playerIsClose = false;
+            // Removed redundant check
+            playerIsClose = false;
         }
     }
 }

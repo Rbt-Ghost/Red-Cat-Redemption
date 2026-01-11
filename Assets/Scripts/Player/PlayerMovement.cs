@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if (playerStats == null)
         {
-
             playerStats = GetComponent<PlayerStats>();
         }
         if (playerStats == null)
@@ -73,16 +72,31 @@ public class PlayerMovement : MonoBehaviour
             }
             return;
         }
-        // Get input for horizontal and vertical movement
+
+        // --- MOVEMENT INPUT (KEYBOARD) ---
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");   // W/S or Up/Down Arrow keys
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        // --- MOVEMENT INPUT (MOBILE OVERRIDE) ---
+        if (MobileInputManager.Instance != null)
+        {
+            Vector2 mobileInput = MobileInputManager.Instance.GetMovement();
+            if (mobileInput != Vector2.zero)
+            {
+                horizontalInput = mobileInput.x;
+                verticalInput = mobileInput.y;
+            }
+        }
 
         // Create a direction vector based on input
         Vector2 movementDirection = new Vector2(horizontalInput, verticalInput);
 
         // Normalize the vector to ensure consistent speed in all directions (including diagonals)
-        // If not normalized, moving diagonally would be faster than moving horizontally/vertically
-        movementDirection.Normalize();
+        // Note: Joystick input is usually already normalized, but this is safe
+        if (movementDirection.magnitude > 1)
+        {
+            movementDirection.Normalize();
+        }
 
         // Calculate the movement amount for this frame
         rb.linearVelocity = movementDirection * moveSpeed;
@@ -125,8 +139,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
+        // Get Input for Animation (Checking both Keyboard and Mobile)
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (MobileInputManager.Instance != null)
+        {
+            Vector2 mobileInput = MobileInputManager.Instance.GetMovement();
+            if (mobileInput.x != 0) horizontalInput = mobileInput.x;
+        }
+
         //Animation. We use the horizontal input to determine the facing direction.
         if (playerAnimator != null)
         {

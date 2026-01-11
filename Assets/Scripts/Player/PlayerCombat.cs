@@ -13,13 +13,20 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if(playerStats.IsAlive()) GetInput();
+        if (playerStats.IsAlive()) GetInput();
     }
 
     private void GetInput()
     {
-        // Check if Space key is pressed or held down
-        if (Input.GetKey(KeyCode.Space))
+        // Check if Space key is pressed OR if Mobile Button is held
+        bool isShooting = Input.GetKey(KeyCode.Space);
+
+        if (MobileInputManager.Instance != null && MobileInputManager.Instance.IsShooting())
+        {
+            isShooting = true;
+        }
+
+        if (isShooting)
         {
             if (weapon != null && weapon.isActiveAndEnabled && weapon.getCanShoot())
             {
