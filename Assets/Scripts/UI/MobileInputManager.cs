@@ -23,8 +23,13 @@ public class MobileInputManager : MonoBehaviour
 
     private void Start()
     {
-        // LOGIC TO HIDE ON PC:
-        // If we are NOT in the Unity Editor, AND we are NOT on a mobile platform...
+        // --- FPS UNCAP LOGIC ---
+        // Unity defaults to 30 FPS on mobile. 
+        // We set it to 300 to ensure the game hits the device's maximum refresh rate 
+        // (whether that is 60Hz, 90Hz, or 120Hz).
+        Application.targetFrameRate = 144;
+
+        // --- HIDE ON PC LOGIC ---
 #if !UNITY_EDITOR
         if (!Application.isMobilePlatform)
         {
@@ -33,7 +38,7 @@ public class MobileInputManager : MonoBehaviour
             if (shootButton != null) shootButton.gameObject.SetActive(false);
             if (interactButton != null) interactButton.gameObject.SetActive(false);
 
-            // 2. Disable this manager object last (so it stops running updates)
+            // 2. Disable this manager object last
             gameObject.SetActive(false);
         }
 #endif
@@ -41,7 +46,6 @@ public class MobileInputManager : MonoBehaviour
 
     public Vector2 GetMovement()
     {
-        // Safety check: if manager or joystick is missing/disabled, return zero
         if (!gameObject.activeInHierarchy || joystick == null) return Vector2.zero;
         return joystick.InputVector;
     }
