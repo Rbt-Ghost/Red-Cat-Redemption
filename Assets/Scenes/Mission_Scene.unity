@@ -2299,7 +2299,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 78}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &697484378
 GameObject:
@@ -4265,7 +4265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefab: {fileID: 8514552849988923346, guid: 206b73de66dabb24889cf14ba2583194, type: 3}
-  spawnInterval: 2
+  timeBetweenSpawns: 1
+  timeBetweenWaves: 3
   minX: -60
   maxX: 30
   minY: -33
@@ -4273,9 +4274,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
-  spawnCheckRadius: 0.5
-  maxSpawnAttempts: 10
-  enemiesContainer: {fileID: 1406621303}
+  spawnRadius: 0.5
 --- !u!4 &1233388522
 Transform:
   m_ObjectHideFlags: 0
@@ -4747,11 +4746,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b7db675baf81dc4aa4c1e5b6e386176, type: 3}
---- !u!4 &1406621303 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6989452775336449258, guid: 206b73de66dabb24889cf14ba2583194, type: 3}
-  m_PrefabInstance: {fileID: 2497198362726962564}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1407324602
 PrefabInstance:
   m_ObjectHideFlags: 0
