@@ -6755,6 +6755,22 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: maxX
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: maxY
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: minX
+      value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: minY
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 1197519511}
