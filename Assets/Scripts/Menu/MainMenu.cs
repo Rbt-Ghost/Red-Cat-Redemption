@@ -15,10 +15,6 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("FreeRoam_Scene");
     }
-    public void LoadNextLevel()
-    {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-    }
 
     IEnumerator LoadLevel(int levelIndex)
     {
