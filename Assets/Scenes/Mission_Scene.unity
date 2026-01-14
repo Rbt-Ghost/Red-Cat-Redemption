@@ -4738,7 +4738,7 @@ AudioSource:
   m_GameObject: {fileID: 1243765044}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2880658172228516218, guid: a5603c0075b8565499abd020446c30c4, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 8220281bb9b5bb443a1597b17f6a58fc, type: 3}
   m_PlayOnAwake: 1
@@ -6903,6 +6903,10 @@ PrefabInstance:
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4003069193063860721, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8873340568056011266, guid: a5603c0075b8565499abd020446c30c4, type: 2}
     - target: {fileID: 5036414203809214935, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
       propertyPath: playerStats
       value: 
@@ -6947,6 +6951,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8386603028780638231, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8873340568056011266, guid: a5603c0075b8565499abd020446c30c4, type: 2}
     - target: {fileID: 8915011845165325541, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9264,6 +9272,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1138968248341455759, guid: 206b73de66dabb24889cf14ba2583194, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8873340568056011266, guid: a5603c0075b8565499abd020446c30c4, type: 2}
     - target: {fileID: 2088846374890807569, guid: 206b73de66dabb24889cf14ba2583194, type: 3}
       propertyPath: m_Camera
       value: 
@@ -9320,6 +9332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8749169412999089720, guid: 206b73de66dabb24889cf14ba2583194, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8873340568056011266, guid: a5603c0075b8565499abd020446c30c4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
