@@ -17,6 +17,10 @@ public class MissionNpc : MonoBehaviour
     [Header("Scene Settings")]
     public string missionSceneName = "MissionScene";
 
+    [Header("UI")]
+    [Tooltip("Drag the child GameObject with the 'F' icon or speech bubble here")]
+    public GameObject interactionCue; // <--- ADD THIS
+
     private bool hasMetPlayer = false;
     private bool playerIsClose;
     private bool isTalkingAboutMission = false;
@@ -27,10 +31,24 @@ public class MissionNpc : MonoBehaviour
 
         // Load the saved state. 0 = False, 1 = True.
         hasMetPlayer = PlayerPrefs.GetInt(npcID + "_Met", 0) == 1;
+
+        // Ensure hidden on start
+        if (interactionCue != null) interactionCue.SetActive(false);
     }
 
     void Update()
     {
+        // --- VISUAL CUE LOGIC ---
+        if (interactionCue != null)
+        {
+            bool shouldShowCue = playerIsClose && !DialogueManager.Instance.IsDialogueActive();
+            if (interactionCue.activeSelf != shouldShowCue)
+            {
+                interactionCue.SetActive(shouldShowCue);
+            }
+        }
+        // ------------------------
+
         // 1. Interaction Logic
         // Check Keyboard 'F' OR Mobile Interact Button
         bool interactTriggered = Input.GetKeyDown(KeyCode.F);
@@ -42,6 +60,9 @@ public class MissionNpc : MonoBehaviour
 
         if (interactTriggered && playerIsClose && !DialogueManager.Instance.IsDialogueActive())
         {
+            // Hide cue on interaction
+            if (interactionCue != null) interactionCue.SetActive(false);
+
             if (!hasMetPlayer)
             {
                 DialogueManager.Instance.StartDialogue(npcName, spriteRenderer.sprite, firstTimeLines);
@@ -72,7 +93,11 @@ public class MissionNpc : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) playerIsClose = false;
+        if (other.CompareTag("Player"))
+        {
+            playerIsClose = false;
+            if (interactionCue != null) interactionCue.SetActive(false);
+        }
     }
 
     // Optional: Call this to 'forget' the player (useful for testing)

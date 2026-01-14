@@ -276,6 +276,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1557173589}
     m_Modifications:
+    - target: {fileID: 1121898037501235749, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4319553490300238799, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: player
       value: 
@@ -579,6 +583,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6220175953550569279, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
   m_PrefabInstance: {fileID: 1666687368}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &388432041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1759679640954845703, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+  m_PrefabInstance: {fileID: 3243135474849818942}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &406026114
 GameObject:
@@ -926,7 +935,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 220480e13fcd4d34cbd383c8e9e9aa50, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1010,7 +1019,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 220480e13fcd4d34cbd383c8e9e9aa50, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -3692,6 +3701,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1557173589}
     m_Modifications:
+    - target: {fileID: 1121898037501235749, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4319553490300238799, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: player
       value: 
@@ -3797,6 +3810,7 @@ MonoBehaviour:
   - Ready for the task?
   - Let's go on the mission!
   missionSceneName: Mission_Scene
+  interactionCue: {fileID: 388432041}
 --- !u!1001 &1342460371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5491,6 +5505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1557173589}
     m_Modifications:
+    - target: {fileID: 1121898037501235749, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4319553490300238799, guid: 85b6ef5d68e38354ca3dc65bfaa3427c, type: 3}
       propertyPath: player
       value: 
@@ -6753,6 +6771,22 @@ PrefabInstance:
     - target: {fileID: 2868299551097831098, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: maxX
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: maxY
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: minX
+      value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
+      propertyPath: minY
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3234207130817241715, guid: 4139d63d9fa5abc43b603d6c9b20809a, type: 3}
       propertyPath: dialogueManager
