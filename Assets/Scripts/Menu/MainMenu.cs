@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        LoadNextLevel();
+        SceneManager.LoadScene("FreeRoam_Scene");
     }
     public void LoadNextLevel()
     {
