@@ -2592,7 +2592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &889530702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2609,7 +2609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 245, y: -52.957}
+  m_AnchoredPosition: {x: 161.84987, y: -205.16412}
   m_SizeDelta: {x: 65.5508, y: 62.2686}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889530703
@@ -2671,6 +2671,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2109892033}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1788969329}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: OpenSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4755,7 +4767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 63, y: -52.957}
+  m_AnchoredPosition: {x: 161.85007, y: -129.06055}
   m_SizeDelta: {x: 65.5508, y: 62.2686}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598700991
@@ -5288,7 +5300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 155.46, y: -52.957}
+  m_AnchoredPosition: {x: 161.84996, y: -54.366547}
   m_SizeDelta: {x: 65.551, y: 62.269}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1730611675
@@ -5459,6 +5471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788969327}
   - component: {fileID: 1788969328}
+  - component: {fileID: 1788969329}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -5501,6 +5514,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   pauseMenu: {fileID: 1788969326}
   transitionTime: 1
+--- !u!114 &1788969329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788969326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed80ab90f84a7e54986847b826623d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseManager
+  mainPauseButtons: {fileID: 1443031175}
+  settingsPanel: {fileID: 0}
+  settingsButtonsGroup: {fileID: 0}
+  soundPanel: {fileID: 0}
+  controlsPanel: {fileID: 7257531528930931404, guid: c0c848a13a9f8f44fa097f8103092917, type: 3}
 --- !u!1001 &1805312814
 PrefabInstance:
   m_ObjectHideFlags: 0
