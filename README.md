@@ -9,11 +9,11 @@ The repository is mantained by:
     <img src="https://github.com/Rbt-Ghost.png" width="64px"/>
 </a>
 
-<a href="https://github.com/ilsfineas">
+<a href="https://github.com/ilisescu03">
     <img src="https://github.com/ilisescu03.png" width="64px"/>
 </a>
 
-<a href="https://github.com/ilisescu03">
+<a href="https://github.com/ilsfineas">
     <img src="https://github.com/ilsfineas.png" width="64px"/>
 </a>
 
